@@ -1,0 +1,16 @@
+@charset "UTF-8";
+/*
+*/
+.subjectA:link {color:black; text-decoration: none;}
+.subjectA:visited {color:black; text-decoration: none;}
+.subjectA:hover {color:coral; text-decoration: none; font-weight:bold;}
+.subjectA:attive {color:black; text-decoration: none;}
+
+#paging{color: black; text-decoration:none;}
+#currentpaging{color: coral; text-decoration:underline;}
+
+.imageboardmenu:link {color:black; text-decoration: none;}
+.imageboardmenu:visited {color:black; text-decoration: none;}
+.imageboardmenu:hover {color:coral; text-decoration: none; font-weight:bold;}
+.imageboardmenu:attive {color:black; text-decoration: none;}
+

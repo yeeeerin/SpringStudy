@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="imageboardSQL">
+<!-- 이미지 등록 -->
+<insert id="writeImageboard" parameterType="imageboard">
+		INSERT INTO imageboard values(seq_imageboard.nextval
+									, #{imageId}
+									, #{imageName}
+									, #{imagePrice}
+									, #{imageQty}
+									, #{imageContent}
+									, #{image1}
+									, sysdate
+									, #{image2})
+	</insert>
+
+<!-- 이미지 목록 -->
+<select id="getImageboardList"  parameterType="java.util.Map" resultType="imageboard">
+	select * from 
+	(select  rownum rn,tt. * from
+	(select * from imageboard order by seq desc)tt
+	)where rn<![CDATA[>=]]>#{startNum} and rn<![CDATA[<=]]>#{endNum}
+</select>
+
+<!-- 총 페이지수 -->
+<select id="getImageboardTotalA" resultType="int">
+	select count(*) from imageboard
+</select>
+
+<!-- 전체 목록 -->
+<select id="getImageboardView" parameterType="int" resultType="imageboard">
+	select * from imageboard where seq=#{seq}
+</select>
+
+<!-- 이미지글 삭제 -->
+<delete id="imageboardDelete" parameterType="java.util.Map">
+<!-- delete imageboard where seq in(2,4,5,8);랑 같은문장 -->
+		delete imageboard where seq in
+		<foreach collection="array" item="item" index="i" open="(" close=")" separator=",">
+			<!-- #{item} -->
+			${array[i]}
+		</foreach>
+</delete>
+
+</mapper>
